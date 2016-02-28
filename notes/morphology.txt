@@ -1,0 +1,9 @@
+Morphology 2.9.16
+
+Finnish - vowel harmony
+
+Finite State Automata (FSA)
+  - finite set of states
+  - one start state
+  - set of final states
+  - transition function
