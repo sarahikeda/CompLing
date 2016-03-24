@@ -1,0 +1,83 @@
+Parsing: Automatic syntacic analysis
+John        saw     a cat
+subject -> verb  --> object
+John saw   [a cat that was walking around]
+                noun phrase (NP)
+John perceived [a black cat]
+                  noun phrase
+John got a glimpse of a black cat
+[Some guy who I made up as an example] saw a [cat]
+        NP                                    NP
+
+NOUN PHRASE has to move together
+
+
+John (saw a cat)
+        VP
+
+Complexity of an algorithm
+- linear - n steps of algorithm
+- square - pieces of data, n(squared) steps
+- cubic  - n(to the 3) steps
+- exponential 2(to the n steps)
+
+best method is cubic unless you're doing chunking (finding noun phrases)
+
+RegEx over part of speech tags
+
+(<Determiner> <JJ>*(or  more) <NN> | <PN>)
+
+Evaluation:
+  1) Precision - how much what you see is good and relates to your query
+  2) Recall - out of all the relevant stuff out there, how much are you finding
+  Precision and recall can be complimentary. Think about a search engine.
+  3) F-score - combines precision and recall
+
+Precision =  TP
+           ------
+            TP + FP
+
+Recall =   TP
+        --------
+         TP + FN
+
+F-score = 2 * Precision * Recall
+        --------------------------
+           Precision + Recall
+
+Confusion Matrix
+  1) Precision: what a system calls 'yes', true positive, false positive
+  2) Recall: true positives + false negatives
+
+Full sentence structure syntatic analysis:
+  - phrase structure (NP, VP,...)
+  - dependencies (subject, object)
+  - categorial grammar
+
+a) Phrase Structure
+                          S                         S
+                          /\                        /\
+    S                         VP                         VP
+ /      \                   /  \                       /   \
+ NP    VP             NP       NP              NP          NP
+ PN    V             PRON V  DT  N           DT  N    V  DT  N
+John sleeps         they saw a duck         the duck saw a duck
+
+
+Context free grammar to describe the syntax of English:
+  Sentence = NP VP
+  VP = V  NP | V
+  NP = PN | PRON | DT N
+
+  LEXICON
+    PN -> John
+    PRON -> they
+    DT -> a | the
+    N -> duck
+    V -> sleeps | saw
+
+  Issues:
+    - Intransitive vs transitive verbs
+      - Sleeps vs saw
+    - pronouns need to have other cases
+    - noun/verb agreement
